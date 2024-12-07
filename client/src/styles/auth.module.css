@@ -1,0 +1,104 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* 화면 전체를 채우도록 설정 */
+    background-color: #f4f4f4; /* 배경색을 밝은 회색으로 변경 */
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px; /* 둥근 모서리 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* 그림자 효과 */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 컨테이너 내 요소들을 가운데 정렬 */
+  }
+  
+  .header2 {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* 로고를 가운데 정렬 */
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .logo_img {
+    max-width: 150px; /* 로고 크기 조정 */
+    height: auto;
+  }
+  
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 8px;
+    font-weight: 600; /* 레이블 폰트 굵게 */
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd; /* 입력 필드 테두리 색상 변경 */
+    border-radius: 6px;
+    font-size: 16px;
+    border: none; /* 입력 필드 테두리 제거 */
+    border-bottom: 2px solid #ddd;
+  }
+  
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    outline: none;
+    box-shadow: none; /* 포커스 시 테두리 효과 제거 */
+    border-bottom: 2px solid #2196f3; /* 아래쪽 테두리 색상 변경 */
+  }
+  
+  .custombutton {
+    padding: 12px;
+    background-color: #2196f3; /* 버튼 색상 변경 */
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #4285f4; /* 구글 버튼 색상으로 변경 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .custombutton:hover {
+    background-color: #3367d6; /* 호버 시 버튼 색상 변경 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* 호버 시 그림자 효과 강화 */
+  }
+  
+  .signupLink {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center; /* 텍스트 가운데 정렬 */
+    color: #757575;
+  }
+  
+  .signupLink a {
+    color: #2196f3; /* 링크 색상 변경 */
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .signupLink a:hover {
+    text-decoration: underline; /* 호버 시 밑줄 추가 */
+  }
+  
+  /* 모바일 responsiveness */
+  @media (max-width: 480px) {
+    .container {
+      max-width: 90%;
+      margin: 20px;
+    }
+  }
