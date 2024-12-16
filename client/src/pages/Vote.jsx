@@ -10,7 +10,7 @@ function MainContent() {
         </div>
         <div className="item-grid">
           <div className="item-card">
-            <h3>[허은정] 탄핵 요구</h3>
+            <h3>[윤석열] 탄핵</h3>
             <p>누적 집계수: 0</p>
           </div>
         </div>

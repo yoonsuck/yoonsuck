@@ -45,8 +45,14 @@ aside::-webkit-scrollbar-track {
     margin-right: 10px;
 }
 
+.logo_img {
+    width: 50px;
+    margin-left: 10px;
+}
+
 .side-nav {
     flex-grow: 1;
+    margin-top: 10px;
 }
 
 .side-nav a {
@@ -61,16 +67,11 @@ aside::-webkit-scrollbar-track {
 
 .side-nav a.active {
     background-color: #3d3f46;
+    font-weight: bold;
 }
 
 .side-nav a:not(.active):hover {
     background-color: #2C2E34;
-}
-
-.side-nav a i {
-    margin-right: 20px;
-    width: 20px;
-    text-align: center;
 }
 
 .quick-links {

@@ -1,4 +1,4 @@
-const { getCommentsCollection, getUsersCollection } = require('../models/db');
+const { getCommentsCollection, getUsersCollection, getPostsCollection } = require('../models/db');
 const { ObjectId } = require('mongodb');
 
 async function getComments(req, res) {
@@ -19,22 +19,38 @@ async function createComment(req, res) {
     const { user } = req.session;
 
     if (!user || user.rank === undefined) {
-        return res.status(403).json({ message: 'Forbidden' });
+        return res.status(404).json({ message: 'Forbidden' });
     }
 
     const userId = new ObjectId(user.id);
     const commentsCollection = getCommentsCollection();
     const usersCollection = getUsersCollection();
+    const postsCollection = getPostsCollection();
 
     try {
         const userData = await usersCollection.findOne({ _id: userId });
+        const comment_up = await postsCollection.findOne({ _id: new ObjectId(postId) }).then(post => {
+            return post ? post.comment_up : 1; 
+          });
+
+        if (typeof comment_up === 'undefined') {
+            await postsCollection.updateOne({ _id: new ObjectId(postId) }, { $set: { comment_up: 1 } });
+        }
+
         if (!userData) {
             return res.status(404).json({ message: 'User not found' });
+        }
+
+        if (userData.rank !== 5) {
+            if (comment_up !== 1) {
+                return res.status(401).json({ message: '관리자 외 댓글 게시 불가 게시물'});
+            }
         }
 
         const newComment = {
             postId: new ObjectId(postId),
             author: userData.username,
+            userId: userData._id,
             content,
             createdAt: new Date()
         };

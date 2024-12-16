@@ -95,16 +95,15 @@ function App() {
             </Route>
 
             <Route element={<MainLayout />}>
- 
-            </Route>
-
-            <Route element={<PrivateRoute><MainLayout /></PrivateRoute>}>
-                <Route path="/home" element={<Home />} />
+            <Route path="/home" element={<Home />} />
                 <Route path="/vote" element={<Vote />} />
                 <Route path="/notice" element={<Notice />} />
                 <Route path="/message" element={<Direct />} />
                 <Route path="/proxy" element={<Proxy />} />
                 <Route path="/posts/view/:id" element={<PostDetail/>} />
+            </Route>
+
+            <Route element={<PrivateRoute><MainLayout /></PrivateRoute>}>
             </Route>
 
             <Route element={<NoPage />}>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/PostDetail.css';
 
@@ -9,7 +9,6 @@ const PostDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
-
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -56,9 +55,18 @@ const PostDetail = () => {
         },
         body: JSON.stringify({ postId: id, content }),
       });
-
       if (!response.ok) {
-        throw new Error('댓글을 추가할 수 없습니다');
+        if (response.status === 400) {
+          return alert('비정상적인 행동이 감지되었습니다.');
+        } else if (response.status === 401){
+          console.log(response);
+          return alert('관리자 외 댓글을 작성할 수 없는 게시물 입니다.');
+        } else if (response.status === 404) {
+          navigate('/login');
+          return alert('로그인 후 이용하세요.')
+        } else {
+          return alert('알 수 없는 오류가 발생했습니다.');
+        }
       }
 
       const newComment = await response.json();
@@ -80,7 +88,11 @@ const PostDetail = () => {
   if (!post) {
     return (
       <section className="content">
-        <div className="prs-message">로딩 중...</div>
+        <div className="prs-message">
+          <svg className='loader' viewBox="25 25 50 50">
+            <circle r="20" cy="50" cx="50"></circle>
+          </svg>
+        </div>
       </section>
     );
   }
@@ -110,7 +122,7 @@ const PostDetail = () => {
                 <textarea
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
-                    placeholder="이곳에 댓글을 입력하세요"
+                    placeholder="이 게시물에 댓글을 남겨보세요"
                     required
                   />
                   <button type="submit">게시</button>
